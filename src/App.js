@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import './App.css';
-import FetchingPosts from './components/FetchingPosts';
-import FetchingUsers from './components/FetchingUsers';
-import FetchingPhotos from './components/FetchingPhotos';
+import { Spinner } from 'react-bootstrap';
+
+// const FetchingPosts = lazy(() => import('./components/FetchingPosts'));
+// const FetchingPhotos = lazy(() => import('./components/FetchingPhotos'));
+const FetchingUsers = lazy(() => import('./components/FetchingUsers'));
 
 function App() {
   return (
     <div className="App">
-      React Api Usage
-      <FetchingPosts />
-      <FetchingUsers />
-      <FetchingPhotos />
+      <Suspense fallback={<Spinner animation="grow" />}>
+        {/* <FetchingPosts />
+        <FetchingPhotos /> */}
+        <FetchingUsers />
+      </Suspense>
     </div>
   );
 }
